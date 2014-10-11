@@ -1,6 +1,6 @@
-require 'requirejs/rails/config'
+require "pathname"
 
-require 'pathname'
+require "requirejs/rails/config"
 
 module Requirejs
   module Rails
@@ -20,14 +20,21 @@ module Requirejs
 
         config.assets.precompile += config.requirejs.precompile
 
-        # Check for the existence of the requirejs:precompile:all top-level Rake task and disable asset pipeline
-        # compression to ensure that `r.js` gets uncompressed assets.
-        Rake.application.top_level_tasks.each do |task_name|
-          case task_name
-            when "requirejs:precompile:all"
-              config.assets.js_compressor = false
+        # Check for the `requirejs:precompile:all` top-level Rake task and run the following initialization code.
+        if defined?(Rake.application) && Rake.application.top_level_tasks == ["requirejs:precompile:all"]
+          # Prevent Sprockets from freezing the assets environment, which allows JS compression to be toggled on a per-
+          # file basis. This trick *will* fail if any of the lines linked to below change.
+
+          if ::Rails::VERSION::MAJOR >= 4
+            # For Rails 4 (see
+            # `https://github.com/rails/sprockets-rails/blob/v2.1.2/lib/sprockets/railtie.rb#L119-121`).
+            config.cache_classes = false
+          else
+            # For Rails 3 (see
+            # `https://github.com/rails/rails/blob/v3.2.19/actionpack/lib/sprockets/bootstrap.rb#L32-34`).
+            config.assets.digest = false
           end
-        end if defined?(Rake.application)
+        end
 
         manifest_directory = config.assets.manifest || File.join(::Rails.public_path, config.assets.prefix)
         manifest_path = File.join(manifest_directory, "rjs_manifest.yml")
@@ -43,7 +50,7 @@ module Requirejs
         end
       end
 
-      if ::Rails::VERSION::STRING >= "4.0.0"
+      if ::Rails::VERSION::MAJOR >= 4
         config.after_initialize do |app|
           config = app.config
           rails_manifest_path = File.join(app.root, 'public', config.assets.prefix)
