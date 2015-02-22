@@ -1,9 +1,5 @@
 /**
-<<<<<<< HEAD
- * @license r.js 2.1.11 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
-=======
  * @license r.js 2.1.15 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/requirejs for details
  */
@@ -24,11 +20,7 @@ var requirejs, require, define, xpcUtil;
 (function (console, args, readFileFunc) {
     var fileName, env, fs, vm, path, exec, rhinoContext, dir, nodeRequire,
         nodeDefine, exists, reqMain, loadedOptimizedLib, existsForNode, Cc, Ci,
-<<<<<<< HEAD
-        version = '2.1.11',
-=======
         version = '2.1.15',
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
         jsSuffixRegExp = /\.js$/,
         commandOption = '',
         useLibLoaded = {},
@@ -246,11 +238,7 @@ var requirejs, require, define, xpcUtil;
     }
 
     /** vim: et:ts=4:sw=4:sts=4
-<<<<<<< HEAD
- * @license RequireJS 2.1.11 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
-=======
  * @license RequireJS 2.1.15 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/requirejs for details
  */
@@ -263,11 +251,7 @@ var requirejs, require, define, xpcUtil;
 (function (global) {
     var req, s, head, baseElement, dataMain, src,
         interactiveScript, currentlyAddingScript, mainScript, subPath,
-<<<<<<< HEAD
-        version = '2.1.11',
-=======
         version = '2.1.15',
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
         commentRegExp = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg,
         cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
         jsSuffixRegExp = /\.js$/,
@@ -22188,8 +22172,6 @@ merge(Compressor.prototype, {
                 return consequent;
             }
         }
-<<<<<<< HEAD
-=======
         // x?y?z:a:a --> x&&y?z:a
         if (consequent instanceof AST_Conditional
             && consequent.alternative.equivalent_to(alternative)) {
@@ -22203,7 +22185,6 @@ merge(Compressor.prototype, {
                 alternative: alternative
             });
         }
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
         return self;
     });
 
@@ -22637,12 +22618,8 @@ exports.minify = function(files, options, name) {
     base54.reset();
 
     // 1. parse
-<<<<<<< HEAD
-    var toplevel = null;
-=======
     var toplevel = null,
         sourcesContent = {};
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
 
     if (options.spidermonkey) {
         toplevel = AST_Node.from_mozilla_ast(files);
@@ -22653,10 +22630,7 @@ exports.minify = function(files, options, name) {
             var code = options.fromString
                 ? file
                 : rjsFile.readFile(file, "utf8");
-<<<<<<< HEAD
-=======
             sourcesContent[file] = code;
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
             toplevel = parse(code, {
                 filename: options.fromString ? name : file,
                 toplevel: toplevel
@@ -27653,18 +27627,6 @@ define('build', function (require) {
                             shim = config.shim && (getOwn(config.shim, moduleName) || (packageMain && getOwn(config.shim, moduleName) || getOwn(config.shim, packageName)));
                             if (shim) {
                                 if (config.wrapShim) {
-<<<<<<< HEAD
-                                    singleContents = '(function(root) {' +
-                                                     '\n' + namespaceWithDot + 'define("' + moduleName + '", ' +
-                                                     (shim.deps && shim.deps.length ?
-                                                            build.makeJsArrayString(shim.deps) + ', ' : '[], ') +
-                                                    'function() {\n' +
-                                                    '      return (function() {\n' +
-                                                             singleContents +
-                                                             (shim.exportsFn ? shim.exportsFn() : '') +
-                                                    '      }).apply(root, arguments);\n' +
-                                                    '    });\n' +
-=======
                                     singleContents = '(function(root) {\n' +
                                                      namespaceWithDot + 'define("' + moduleName + '", ' +
                                                      (shim.deps && shim.deps.length ?
@@ -27678,7 +27640,6 @@ define('build', function (require) {
                                                              '\n' +
                                                     '  }).apply(root, arguments);\n' +
                                                     '});\n' +
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
                                                     '}(this));\n';
                                 } else {
                                     singleContents += '\n' + namespaceWithDot + 'define("' + moduleName + '", ' +
@@ -27990,11 +27951,7 @@ function (args, quit, logger, build) {
     } else if (commandOption === 'v') {
         console.log('r.js: ' + version +
                     ', RequireJS: ' + this.requirejsVars.require.version +
-<<<<<<< HEAD
-                    ', UglifyJS2: 2.4.12, UglifyJS: 1.3.4');
-=======
                     ', UglifyJS2: 2.4.13, UglifyJS: 1.3.4');
->>>>>>> dd10bdbbbb5217958cb51b32ec20e0ea75cc330c
     } else if (commandOption === 'convert') {
         loadLib();
 
