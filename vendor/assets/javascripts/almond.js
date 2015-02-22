@@ -304,7 +304,7 @@ var requirejs, require, define;
                 } else if (hasProp(defined, depName) ||
                            hasProp(waiting, depName) ||
                            hasProp(defining, depName)) {
-                           args[i] = callDep(depName);
+                    args[i] = callDep(depName);
                 } else if (map.p) {
                     map.p.load(map.n, makeRequire(relName, true), makeLoad(depName), {});
                     args[i] = defined[depName];
